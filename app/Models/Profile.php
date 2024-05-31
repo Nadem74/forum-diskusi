@@ -19,6 +19,14 @@ class Profile extends Model
         return $this->hasMany(Pertanyaan::class);
     }
    
+    public function getAvatar()
+    {
+        if (!$this->foto) {
+            return asset('images/default.jpg');
+        }
+        return asset('images/' . $this->foto);
+    }
+    
     public function jawaban(){
                                     // foreign key , owner
         return $this->hasMany(Jawaban::class,'profile_id','id');

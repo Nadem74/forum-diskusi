@@ -44,4 +44,9 @@ User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relasi ke table profile
+    public function profile(){
+        return $this->hasOne(Profile::class,'user_id','id');
+    }
 }

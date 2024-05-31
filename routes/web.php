@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,9 @@ Route::post('/postlogin', [AuthController::class, 'postlogin']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/postregister', [AuthController::class, 'postregister']);
 Route::get('/logout', [AuthController::class, 'logout']);
+
+// untuk user
+Route::middleware(['auth', 'role:users,admin','web'])->group(function () {
+    Route::resource('kategori', KategoriController::class);
+    Route::post('/kategori/store', [KategoriController::class, 'store']);
+});

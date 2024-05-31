@@ -74,7 +74,7 @@ class AuthController extends Controller
                 return redirect('/register')->with('status', 'Password yang anda masukan tidak sama');
             }
     }else {
-            return redirect('/register')->with('status1', 'Anda harus mecentang persyaratan terlebih dahulu');
+            return redirect('/register')->with('status', 'Anda harus mecentang persyaratan terlebih dahulu');
     }
     }
     public function logout(){
