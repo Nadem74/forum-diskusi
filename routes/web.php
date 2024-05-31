@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\tampilController;
 use App\Http\Controllers\ForumController;
-
+use App\Http\Controllers\profileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +26,14 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::post('/postregister', [AuthController::class, 'postregister']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
+//middleware untuk role admin
+Route::middleware(['web','auth', 'role:admin'])->group(function () {
+    Route::get('/', [profileController::class, 'index']);
+    // table pertanyaan
+    Route::resource('profile', profileController::class);
+  
+});
+
 // untuk user
 Route::middleware(['auth', 'role:users,admin','web'])->group(function () {
     Route::get('/', [tampilController::class, 'index']);
@@ -36,7 +44,7 @@ Route::middleware(['auth', 'role:users,admin','web'])->group(function () {
     Route::get('/forum/show/{id}', [ForumController::class, 'show']);
     Route::post('/forum/store', [ForumController::class, 'store']);
 
-     Route::post('/forum/jawaban/{id}', [ForumController::class, 'jawab']);
+    Route::post('/forum/jawaban/{id}', [ForumController::class, 'jawab']);
     Route::post('/forum/komentar_pertanyaan/{id}', [ForumController::class, 'komentar_pertanyaan']);
     Route::post('/forum/komentar_jawaban/{id}', [ForumController::class, 'komentar_jawaban']);
     Route::get('/forum/edit/{id}', [ForumController::class, 'edit']); // edit

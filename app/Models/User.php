@@ -49,4 +49,15 @@ User extends Authenticatable
     public function profile(){
         return $this->hasOne(Profile::class,'user_id','id');
     }
+    public function pertanyaan(){
+        return $this->hasMany(Pertanyaan::class,'user_id','id');
+    }
+    public function jawaban()
+    {
+        return $this->hasMany(Jawaban::class,'user_id','id');
+    }
+    public function follower()
+    {
+        return $this->hasMany(Follower::class, 'user_id', 'id');
+    }
 }
