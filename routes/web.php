@@ -8,6 +8,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\PertanyaanController;
 use App\Http\Controllers\exportController;
+use App\Http\Controllers\jawabanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,9 @@ Route::middleware(['web','auth', 'role:admin'])->group(function () {
     Route::get('/exportPertanyaan', [exportController::class, 'PDFPertanyaan']);
     Route::get('/ExcelPertanyaan', [exportController::class, 'ExcelPertanyaan']);
 
+    Route::get('/exportJawaban', [exportController::class, 'PDFJawaban']);
+    Route::get('/ExcelJawaban', [exportController::class, 'ExcelJawaban']);
+
   
 });
 
@@ -65,5 +69,12 @@ Route::middleware(['auth', 'role:users,admin','web'])->group(function () {
     Route::patch('/forum/update/{id}', [ForumController::class, 'update2']);
     Route::post('/forum/hapus/{id}', [ForumController::class, 'destroy']); // delete
     Route::delete('/forum/hapus/{id}', [ForumController::class, 'destroy2']);
-    Route::get('/following/{id}', [ForumController::class, 'follower']);
+        Route::get('/following/{id}', [ForumController::class, 'follower']);
+    Route::get('/unfollow/{id}', [ForumController::class, 'unfollow']);
+    
+    Route::resource('profile', profileController::class);
+
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+     \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });

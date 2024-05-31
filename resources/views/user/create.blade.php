@@ -3,7 +3,7 @@
 @FilemanagerScript
 <script src="https://cdn.tiny.cloud/1/ua95h8cslfj41h4ax3prlueosh8dmdw30vaviwmpfrdcofyv/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
-    {{-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> --}}
+    {{-- <script src="//cdn.tinymce.com/7/tinymce.min.js"></script> --}}
 @endsection
 @section('content')
     <section class="card" style="background: #ffff;">
