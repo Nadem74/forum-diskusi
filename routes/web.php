@@ -6,6 +6,8 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\tampilController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\PertanyaanController;
+use App\Http\Controllers\exportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +32,17 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::middleware(['web','auth', 'role:admin'])->group(function () {
     Route::get('/', [profileController::class, 'index']);
     // table pertanyaan
+    Route::resource('pertanyaan', PertanyaanController::class);
+    Route::get('/pertanyaan/{show}', [profileController::class, 'ShowPertanyaan']); // show admin untuk pertanyaan use
     Route::resource('profile', profileController::class);
+
+    Route::delete('/hapus/{hapus}', [jawabanController::class, 'Destroy']);
+    Route::resource('jawaban', jawabanController::class);
+
+     // Export pdf pertanyaan & jawban
+    Route::get('/exportPertanyaan', [exportController::class, 'PDFPertanyaan']);
+    Route::get('/ExcelPertanyaan', [exportController::class, 'ExcelPertanyaan']);
+
   
 });
 

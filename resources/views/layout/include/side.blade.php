@@ -46,7 +46,7 @@
           </li>
 
         <li class="nav-item">
-            <a href="{{url('/Pertanyaan')}}" class="nav-link">
+            <a href="{{url('/pertanyaan')}}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Pertanyaan

@@ -36,9 +36,9 @@ class Pertanyaan extends Model
     }
 
      // tags many to many
-    public function kategori(){
-        // mencari pertanyaan_id              // nama table  dan foreign key dan foreign key dari post
-        return $this->belongsToMany(kategori::class,'pertanyaan_kategori','pertanyaan_id','kategori_id');
-    }
+     public function kat(){
+        // foreign key , owner
+            return $this->hasOne(Kategori::class,'id', 'kategori_id');
+        }
 
 }
